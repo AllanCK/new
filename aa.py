@@ -17,7 +17,7 @@ def inserirAluno():
             #coloca pra tentar esse codigo para pegar erros
             try:
                 #Cria a variavel e solicita um input da nota do aluno e transforma em inteiro
-                nota = int(input("Insira a nota do aluno: "))
+                nota = round(float(input("Insira a nota do aluno(1 até 10): ")),1)
             #roda isso caso ocorra um erro no try
             except:
                 #imprime solicitando apenas um numero
@@ -57,7 +57,9 @@ def alterarAluno():
                 #tenta fazer esse codigo e verificar um erro
                 try:
                     #solicita a nota do aluno
-                    nota = int(input("Insira a nota do aluno: "))
+                    while True:
+                        nota = round(float(input("Insira a nota do aluno(1 até 10): ")),1)
+                        
                 #se ocorrer um erro roda essa parte do codigo
                 except:
                     #solicita ao usuario que coloque apenas numeros
@@ -138,23 +140,27 @@ def mediaNotas():
 #Loop do codigo principal
 while True:
     separador()
-    #imprime para o usuario e solicita que escreva uma opção para ser salva na variavel opcao
-    opcao = int(input("selecione a opção desejada: \n\n  1 - Adicionar aluno\n  2 - Alterar nota\n  3 - Remover aluno\n  4 - Consultar Alunos\n  5 - Consultar Media\n  6 - Encerrar\n\n"))
-    #Verifica a variavel opcao e vai rodar a funcao determinada
-    match opcao:  
-        case 1:
-            inserirAluno()
-        case 2:
-            alterarAluno()
-        case 3:
-            excluirAluno()
-        case 4:
-            consultarAlunos()
-        case 5:
-            mediaNotas()
-        case 6:
-            #quebra o loop principal.encerrando o programa
-            break
-        #se não for nenhuma das opções definidas
-        case _:
-            print("\nDigite uma opção valida")
+    try:
+        #imprime para o usuario e solicita que escreva uma opção para ser salva na variavel opcao
+        opcao = int(input("selecione a opção desejada: \n\n  1 - Adicionar aluno\n  2 - Alterar nota\n  3 - Remover aluno\n  4 - Consultar Alunos\n  5 - Consultar Media\n  6 - Encerrar\n\n"))
+         #Verifica a variavel opcao e vai rodar a funcao determinada
+    except:
+        print("\nDigite uma opção valida")
+    else:
+        match opcao:  
+            case 1:
+                inserirAluno()
+            case 2:
+                alterarAluno()
+            case 3:
+                excluirAluno()
+            case 4:
+                consultarAlunos()
+            case 5:
+                mediaNotas()
+            case 6:
+                #quebra o loop principal.encerrando o programa
+                break
+            #se não for nenhuma das opções definidas
+            case _:
+                print("\nDigite uma opção valida")
